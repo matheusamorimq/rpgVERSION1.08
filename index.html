@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <title>RPG do Reis</title>
+
+    <style>
+        body { margin: 0; overflow: hidden; background: #000; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        #gameCanvas { background: #6ab04c; display: block; }
+
+        /* Contêiner para posicionar a UI acima do Canvas */
+        .game-container { position: relative; width: 800px; height: 600px; }
+
+        /* Estilo Comum para Todos os Menus de Tela Cheia */
+        .game-menu {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85); /* Fundo escuro */
+            color: white;
+            display: none; /* Controlado pelo JS */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000; /* Acima de tudo */
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .game-menu h1 {
+            color: #4cd137; /* Cor do XP para destaque */
+        }
+        .game-menu button {
+            background-color: #333;
+            color: white;
+            border: 2px solid #fff;
+            padding: 12px 24px;
+            margin: 10px;
+            cursor: pointer;
+            font-size: 20px;
+            border-radius: 8px;
+            transition: background-color 0.2s;
+            min-width: 280px;
+        }
+        .game-menu button:hover {
+            background-color: #555;
+            border-color: #4cd137;
+        }
+        
+        /* Estilos da Tabela de Controles */
+        .controls-table {
+            margin: 30px auto;
+            border-collapse: collapse;
+            width: 80%;
+            max-width: 450px;
+            font-size: 18px;
+        }
+        .controls-table th, .controls-table td {
+            border: 1px solid #777;
+            padding: 12px;
+            text-align: left;
+        }
+        .controls-table th {
+            background-color: #555;
+            color: #4cd137;
+        }
+        .controls-table td:last-child {
+            font-weight: bold;
+            color: yellow;
+        }
+
+
+        /* Barra de XP (Posicionamento relativo ao .game-container) */
+        #ui {
+            position: absolute;
+            top: 10px;
+            left: 50%; /* Centraliza horizontalmente */
+            transform: translateX(-50%);
+            width: 40%;
+            height: 20px;
+            background: #333;
+            border: 2px solid #fff;
+            z-index: 50;
+        }
+
+        #xpBar {
+            height: 100%;
+            width: 0%;
+            background: #4cd137;
+        }
+
+        /* Os estilos #hpUI e #hpBar foram removidos */
+    </style>
+</head>
+
+<body>
+<div class="game-container">
+    
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+
+    <div id="ui">
+        <div id="xpBar"></div>
+    </div>
+    
+    <div id="mainMenu" class="game-menu" style="display: flex;">
+        <h1>🛡️ RPG REIS ⚔️</h1>
+        <button id="startButton">COMEÇAR NOVO JOGO</button>
+        <button id="controlsFromMainButton">TECLAS</button>
+        <button id="creditsButton">CRÉDITOS</button>
+    </div>
+
+    <div id="pauseMenu" class="game-menu">
+        <h1>⏸️ JOGO PAUSADO ⏸️</h1>
+        <button id="resumeButton">VOLTAR AO JOGO</button>
+        <button id="controlsFromPauseButton">TECLAS</button>
+        <button id="returnToMainButton">SAIR PARA O MENU INICIAL</button>
+    </div>
+
+    <div id="controlsMenu" class="game-menu">
+        <h2>🔑 CONTROLES DO JOGO</h2>
+        <table class="controls-table">
+            <tr><th>AÇÃO</th><th>TECLA</th></tr>
+            <tr><td>Movimentação</td><td>W, A, S, D</td></tr>
+            <tr><td>Dash (Esquiva Rápida)</td><td>SHIFT</td></tr>
+            <tr><td>Atacar</td><td>K / Clique</td></tr>
+            <tr><td>Pausar Jogo</td><td>P</td></tr>
+        </table>
+        <button id="backFromControlsButton">VOLTAR</button>
+    </div>
+
+    <div id="creditsMenu" class="game-menu">
+        <h2>✨ CRÉDITOS ✨</h2>
+        <p>Desenvolvedor: Reis</p>
+        <p>Arte e Design: Feito com amor e carinho</p>
+        <p>Beta Testers: Clarinha linda e João, muito obrigado <3</p>
+        <p>Apoio: ChatGPT e Gemini</p>
+        <button id="backFromCreditsButton">VOLTAR AO MENU PRINCIPAL</button>
+    </div>
+
+    <div id="upgradeMenu" class="game-menu">
+        </div>
+
+</div> <script src="script.js"></script>
+
+</body>
+</html>
